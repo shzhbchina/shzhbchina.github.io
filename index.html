@@ -3,102 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>当前时间</title>
+  <title>当年沧海official粉丝纯度测试</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --glow: rgba(88, 166, 255, 0.3);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'JetBrains Mono', 'Consolas', monospace;
-      padding: 1.5rem;
-    }
-
-    .clock-card {
-      background: var(--surface);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 2.5rem 3rem;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    }
-
-    .time-display {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      text-shadow: 0 0 24px var(--glow);
-      margin-bottom: 0.5rem;
-    }
-
-    .date-display {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
-
-    .timezone {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: var(--accent);
-      opacity: 0.9;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="clock-card">
-    <div class="time-display" id="time">--:--:--</div>
-    <div class="date-display" id="date">加载中...</div>
-    <div class="timezone" id="tz"></div>
-  </div>
+  <main class="app" aria-label="当年沧海official粉丝纯度测试">
+    <section class="card" id="quizCard" aria-live="polite">
+      <header class="card__header">
+        <div class="cardTitle">当年沧海official粉丝纯度测试</div>
+        <div class="progress" id="progress">题号：1/10</div>
+      </header>
 
-  <script>
-    function pad(n) {
-      return String(n).padStart(2, '0');
-    }
+      <div class="card__body">
+        <div class="question" id="question">加载中...</div>
+      </div>
 
-    function formatTime(d) {
-      return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-    }
+      <div class="card__footer">
+        <div class="options" id="options" role="group" aria-label="选项"></div>
+      </div>
+    </section>
 
-    function formatDate(d) {
-      const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-      const w = weekdays[d.getDay()];
-      return d.getFullYear() + '年' + pad(d.getMonth() + 1) + '月' + pad(d.getDate()) + '日 ' + w;
-    }
+    <section class="card card--result is-hidden" id="resultCard" aria-live="polite">
+      <div class="resultTitle">测试完成！</div>
+      <div class="meter" aria-label="分数进度条">
+        <div class="meter__fill" id="meterFill" style="width: 0%"></div>
+      </div>
+      <div class="resultScore" id="finalScore">你的最终得分是：0 / 10</div>
+      <div class="resultLevel" id="resultLevel">粉丝纯度评级：-</div>
+      <div class="resultComment" id="resultComment">评语加载中...</div>
+      <button class="btn btn--primary" id="restartBtn" type="button">重新开始</button>
+    </section>
+  </main>
 
-    function update() {
-      const now = new Date();
-      document.getElementById('time').textContent = formatTime(now);
-      document.getElementById('date').textContent = formatDate(now);
-      document.getElementById('tz').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    }
-
-    update();
-    setInterval(update, 1000);
-  </script>
+  <script src="./script.js" defer></script>
 </body>
 </html>
