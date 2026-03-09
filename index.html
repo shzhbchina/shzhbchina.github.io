@@ -11,9 +11,15 @@
 </head>
 <body>
   <main class="app" aria-label="当年沧海official粉丝纯度测试">
+    <header class="siteTop" aria-label="顶部展示">
+      <img class="siteTop__img" src="./assets/top-banner.png" alt="当年沧海OFFICIAL 顶部展示图">
+    </header>
+
+    <h1 class="pageTitle">当年沧海official粉丝纯度测试</h1>
+
+    <div class="quizWrap">
     <section class="card" id="quizCard" aria-live="polite">
       <header class="card__header">
-        <div class="cardTitle">当年沧海official粉丝纯度测试</div>
         <div class="progress" id="progress">题号：1/10</div>
       </header>
 
@@ -36,6 +42,7 @@
       <div class="resultComment" id="resultComment">评语加载中...</div>
       <button class="btn btn--primary" id="restartBtn" type="button">重新开始</button>
     </section>
+    </div>
   </main>
 
   <script src="./script.js" defer></script>
